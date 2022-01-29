@@ -2660,13 +2660,12 @@ var PhotoForm = function PhotoForm() {
   var handleChange = function handleChange(event) {
     var target = event.target;
     var fileList = target.files;
-    å;
     setPhoto(fileList[0]);
   };
 
   var onSubmit = function onSubmit() {
     return __awaiter(void 0, void 0, void 0, function () {
-      var formData, response;
+      var formData, error_1;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -2679,12 +2678,30 @@ var PhotoForm = function PhotoForm() {
             }
 
             formData.append("photo", photo);
+            _a.label = 1;
+
+          case 1:
+            _a.trys.push([1, 3,, 4]);
+
             return [4
             /*yield*/
             , axios_1["default"].post("/api/photos", formData)];
 
-          case 1:
-            response = _a.sent();
+          case 2:
+            _a.sent();
+
+            return [3
+            /*break*/
+            , 4];
+
+          case 3:
+            error_1 = _a.sent();
+            alert(error_1);
+            return [3
+            /*break*/
+            , 4];
+
+          case 4:
             return [2
             /*return*/
             ];

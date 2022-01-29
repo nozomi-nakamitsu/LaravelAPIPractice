@@ -5,7 +5,7 @@ const PhotoForm = () => {
     const [photo, setPhoto] = useState<File | null>(null);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
-        const fileList = target.files as FileList;å
+        const fileList = target.files as FileList;
         setPhoto(fileList[0]);
     };
     const onSubmit = async () => {
@@ -14,7 +14,11 @@ const PhotoForm = () => {
             return;
         }
         formData.append("photo", photo);
-        const response = await axios.post("/api/photos", formData);
+        try {
+            await axios.post("/api/photos", formData);
+        } catch (error) {
+            alert(error);
+        }
     };
     return (
         <div className="photo-form">

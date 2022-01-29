@@ -27,7 +27,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
             const response = await axios.get("/api/user");
             setCurrentUser(response.data);
         })();
-    }, [currentUser]);
+    }, []);
 
     return (
         <AuthContext.Provider

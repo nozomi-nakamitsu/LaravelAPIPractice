@@ -1,6 +1,6 @@
 import React from "react";
-import PhotoForm from "./PhotoForm";
-import PhotoList from "./PhotoList";
+import PhotoForm from "../components/PhotoForm";
+import PhotoList from "../components/PhotoList";
 
 
 const Top = () => {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/photoList.css";
+import { Link } from "react-router-dom";
+
 const PhotoList = () => {
     const [photos, setPhotos] = useState<any[]>([]);
     useEffect(() => {
@@ -14,12 +16,14 @@ const PhotoList = () => {
             {photos
                 ? photos.map((photo) => {
                       return (
-                          <article className="card" key={photo.id}>
-                              <figure className="image">
-                                  <img className="img" src={photo.url} />
-                                  <p>{photo.user.name}</p>
-                              </figure>
-                          </article>
+                          <Link to={`/photo/${photo.id}`} key={photo.id}>
+                              <article className="card">
+                                  <figure className="image">
+                                      <img className="img" src={photo.url} />
+                                      <p>{photo.user.name}</p>
+                                  </figure>
+                              </article>
+                          </Link>
                       );
                   })
                 : null}

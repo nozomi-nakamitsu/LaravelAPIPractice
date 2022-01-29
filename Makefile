@@ -6,14 +6,14 @@ build:
 		docker-compose build
 create-project:
 		docker-compose up -d --build
-		docker-compose exec app composer create-project --prefer-dist laravel/laravel .
-		docker-compose exec app composer require predis/predis
+		docker-compose exec php composer create-project --prefer-dist laravel/laravel .
+		docker-compose exec php composer require predis/predis
 install:
 		docker-compose up -d --build
-		docker-compose exec app composer install
-		docker-compose exec app cp .env.example .env
-		docker-compose exec app php artisan key:generate
-		docker-compose exec app php artisan migrate:fresh --seed
+		docker-compose exec php composer install
+		docker-compose exec php cp .env.example .env
+		docker-compose exec php php artisan key:generate
+		docker-compose exec php php artisan migrate:fresh --seed
 reinstall:
 		@make destroy
 		@make install
@@ -29,27 +29,27 @@ destroy:
 ps:
 		docker-compose ps
 app:
-		docker-compose exec app bash
+		docker-compose exec php bash
 fresh:
-		docker-compose exec app php artisan migrate:fresh --seed
+		docker-compose exec php php artisan migrate:fresh --seed
 seed:
-		docker-compose exec app php artisan db:seed
+		docker-compose exec php php artisan db:seed
 tinker:
-		docker-compose exec app php artisan tinker
+		docker-compose exec php php artisan tinker
 dump:
-		docker-compose exec app php artisan dump-server
+		docker-compose exec php php artisan dump-server
 test:
-		docker-compose exec app php ./vendor/bin/phpunit
+		docker-compose exec php php ./vendor/bin/phpunit
 cache:
-		docker-compose exec app composer dump-autoload -o
-		docker-compose exec app php artisan optimize:clear
-		docker-compose exec app php artisan optimize
+		docker-compose exec php composer dump-autoload -o
+		docker-compose exec php php artisan optimize:clear
+		docker-compose exec php php artisan optimize
 cache-clear:
-		docker-compose exec app php artisan optimize:clear
+		docker-compose exec php php artisan optimize:clear
 cs:
-		docker-compose exec app ./vendor/bin/phpcs
+		docker-compose exec php ./vendor/bin/phpcs
 cbf:
-		docker-compose exec app ./vendor/bin/phpcbf
+		docker-compose exec php ./vendor/bin/phpcbf
 db:
 		docker-compose exec db bash
 sql:

@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
- 
-const App = () => {
-    const title: string = 'TypeScript React !!'
-    return (
-        <h1>{title}</h1>
-    )
-}
- 
+
+import Router from "./components/router"
+
+
 ReactDOM.render(
-    <App />,
+    <Router />,
     document.getElementById('app')
 )

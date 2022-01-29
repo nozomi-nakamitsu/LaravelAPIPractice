@@ -2660,7 +2660,7 @@ var PhotoForm = function PhotoForm() {
   var handleChange = function handleChange(event) {
     var target = event.target;
     var fileList = target.files;
-    console.log("handleChange", fileList[0]);
+    å;
     setPhoto(fileList[0]);
   };
 
@@ -2670,7 +2670,6 @@ var PhotoForm = function PhotoForm() {
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
-            console.log("photo", photo);
             formData = new FormData();
 
             if (!photo) {
@@ -2686,7 +2685,6 @@ var PhotoForm = function PhotoForm() {
 
           case 1:
             response = _a.sent();
-            console.log(response);
             return [2
             /*return*/
             ];

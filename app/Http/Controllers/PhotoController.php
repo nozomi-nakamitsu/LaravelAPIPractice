@@ -48,4 +48,19 @@ class PhotoController extends Controller
             return response()->json([], 500);
         }
     }
+    
+    /**
+         * 写真投稿
+         * @return \Illuminate\Http\Response
+         */
+
+    public function index()
+    {
+        try {
+            $photos =Photo::with(['user'])->orderBy(Photo::CREATED_AT, 'desc')->get();
+            return response()->json($photos, 200);
+        } catch (\Exception $exception) {
+            return response()->json([], 500);
+        }
+    }
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import PhotoForm from "./PhotoForm";
+import PhotoList from "./PhotoList";
+
 
 const Top = () => {
     const navigate = useNavigate();
@@ -37,6 +39,7 @@ const Top = () => {
             </div>
             <hr />
             <PhotoForm />
+            <PhotoList/>
         </div>
     );
 };

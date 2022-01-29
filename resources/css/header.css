@@ -7,28 +7,30 @@
 .header-inner {
     display: flex;
     align-items: center;
-    max-width: 1024px;
     height: 60px;
     padding: 0 0.8em;
-    margin: 0 auto;
     font-size: 1.2em;
 }
 
 .header-nav-list {
-    display: inline-block;
+    display: flex;
+    align-items: center;
 }
 
 .header-nav-item {
-    float: left;
     padding: 12px;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
     text-align: center;
     list-style: none;
+    cursor: pointer;
+}
+.-mr0 {
+    margin-right: 0;
 }
 
-.header-nav-item a {
+a {
     text-decoration: none;
 }
 
@@ -50,8 +52,4 @@
 
 .header-nav-item:hover {
     color: #444;
-}
-
-.logo img {
-    width: 70px;
 }

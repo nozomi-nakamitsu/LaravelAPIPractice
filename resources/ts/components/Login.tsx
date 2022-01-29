@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../../css/login.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./Auth";
 
 const Login = () => {
     const navigate = useNavigate();
     const [form, setForm] = useState({ email: "", password: "" });
+    const { setCurrentUserData } = useContext(AuthContext);
+
     const login = async () => {
         try {
             const response = await axios.post("/api/login", form);
             if (response.status === 200) {
                 navigate("/");
+                setCurrentUserData(response.data);
             }
         } catch (error) {
             alert(error);

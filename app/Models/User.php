@@ -52,4 +52,9 @@ class User extends Authenticatable
             'user_id',
         );
     }
+
+    /** JSONに含める属性 */
+    protected $visible = [
+    'id', 'name', 'email',
+];
 }

@@ -2083,6 +2083,57 @@ react_dom_1["default"].render(react_1["default"].createElement(router_1["default
 
 /***/ }),
 
+/***/ "./resources/ts/components/Header.tsx":
+/*!********************************************!*\
+  !*** ./resources/ts/components/Header.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+
+__webpack_require__(/*! ../../css/header.css */ "./resources/css/header.css");
+
+var Header = function Header() {
+  return react_1["default"].createElement("header", {
+    className: "header-5"
+  }, react_1["default"].createElement("div", {
+    className: "header-inner"
+  }, react_1["default"].createElement("div", {
+    className: "logo"
+  }), react_1["default"].createElement("nav", {
+    className: "header-nav"
+  }, react_1["default"].createElement("ul", {
+    className: "header-nav-list"
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    to: "/"
+  }, react_1["default"].createElement("li", {
+    className: "header-nav-item"
+  }, "TOP")), react_1["default"].createElement(react_router_dom_1.Link, {
+    to: "/login"
+  }, react_1["default"].createElement("li", {
+    className: "header-nav-item"
+  }, "Login"))))));
+};
+
+exports["default"] = Header;
+
+/***/ }),
+
 /***/ "./resources/ts/components/Login.tsx":
 /*!*******************************************!*\
   !*** ./resources/ts/components/Login.tsx ***!
@@ -2724,12 +2775,10 @@ var Top_1 = __importDefault(__webpack_require__(/*! ./Top */ "./resources/ts/com
 
 var Login_1 = __importDefault(__webpack_require__(/*! ./Login */ "./resources/ts/components/Login.tsx"));
 
+var Header_1 = __importDefault(__webpack_require__(/*! ./Header */ "./resources/ts/components/Header.tsx"));
+
 var Router = function Router() {
-  return react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, react_1["default"].createElement("li", null, react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/"
-  }, "Home")), react_1["default"].createElement("li", null, react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/login"
-  }, "Login")))), react_1["default"].createElement(react_router_dom_1.Routes, null, react_1["default"].createElement(react_router_dom_1.Route, {
+  return react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.Routes, null, react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/",
     element: react_1["default"].createElement(Top_1["default"], null)
   }), react_1["default"].createElement(react_router_dom_1.Route, {
@@ -2739,6 +2788,30 @@ var Router = function Router() {
 };
 
 exports["default"] = Router;
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./resources/css/header.css":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./resources/css/header.css ***!
+  \********************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".header-5 {\n    box-sizing: border-box;\n    width: 100%;\n    background-color: #f16272;\n}\n\n.header-inner {\n    display: flex;\n    align-items: center;\n    max-width: 1024px;\n    height: 60px;\n    padding: 0 0.8em;\n    margin: 0 auto;\n    font-size: 1.2em;\n}\n\n.header-nav-list {\n    display: inline-block;\n}\n\n.header-nav-item {\n    float: left;\n    padding: 12px;\n    font-size: 14px;\n    font-weight: bold;\n    color: #fff;\n    text-align: center;\n    list-style: none;\n}\n\n.header-nav-item a {\n    text-decoration: none;\n}\n\n.header-ham {\n    display: none;\n}\n\n.menu2 {\n    width: 20px;\n    height: 3px;\n    margin: 4px 0;\n    margin-right: 0;\n    background-color: #333;\n}\n\n.select {\n    color: #444;\n}\n\n.header-nav-item:hover {\n    color: #444;\n}\n\n.logo img {\n    width: 70px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -34336,6 +34409,36 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./resources/css/header.css":
+/*!**********************************!*\
+  !*** ./resources/css/header.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./header.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./resources/css/header.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_header_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_header_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

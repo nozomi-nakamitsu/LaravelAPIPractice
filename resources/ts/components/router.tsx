@@ -2,11 +2,13 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Top from "./Top";
 import Login from "./Login";
+import Header from "./Header";
+
 
 const Router = () => {
     return (
         <BrowserRouter>
-            <nav>
+            {/* <nav>
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -15,7 +17,8 @@ const Router = () => {
                         <Link to="/login">Login</Link>
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
+            <Header/>
             <Routes>
                 <Route path="/" element={<Top />}></Route>
                 <Route path="/login" element={<Login />}></Route>

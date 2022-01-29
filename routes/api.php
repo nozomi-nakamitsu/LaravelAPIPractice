@@ -21,6 +21,8 @@ Route::group(["middleware"=>'auth:sanctum'], function () {
     Route::get('user', function (Request $request) {
         return $request->user();
     });
+    // 写真投稿
+    Route::post('/photos', 'PhotoController@store')->name('photo.store');
 });
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

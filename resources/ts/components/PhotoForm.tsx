@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 
 const PhotoForm = () => {
     const [photo, setPhoto] = useState<File | null>(null);

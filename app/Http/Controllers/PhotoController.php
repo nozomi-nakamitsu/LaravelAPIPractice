@@ -47,6 +47,5 @@ class PhotoController extends Controller
             Storage::cloud()->delete($photo->filename);
             return response()->json([], 500);
         }
-        return response()->json([], 500);
     }
 }

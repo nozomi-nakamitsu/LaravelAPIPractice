@@ -2953,7 +2953,6 @@ var PhotoList = function PhotoList() {
 
             case 1:
               response = _a.sent();
-              console.log(response);
               setPhotos(response.data);
               return [2
               /*return*/

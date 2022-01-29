@@ -6,7 +6,6 @@ const PhotoList = () => {
     useEffect(() => {
         (async () => {
             const response = await axios.get("api/photos");
-            console.log(response);
             setPhotos(response.data);
         })();
     }, []);

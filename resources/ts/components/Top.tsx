@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+import PhotoForm from "./PhotoForm";
 
 const Top = () => {
     const navigate = useNavigate();
@@ -34,6 +35,8 @@ const Top = () => {
                 <p>ログインユーザー</p>
                 <div>{user ? <p>{user.name}</p> : null}</div>
             </div>
+            <hr />
+            <PhotoForm />
         </div>
     );
 };

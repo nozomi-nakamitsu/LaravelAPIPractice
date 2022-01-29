@@ -7,11 +7,13 @@ const Login = () => {
     const navigate = useNavigate();
     const [form, setForm] = useState({ email: "", password: "" });
     const login = async () => {
-        const response = await axios.post("/api/login", form);
-        console.log(response);
-        if (response.status === 200) {
-            console.log("aaa")
-            navigate("/");
+        try {
+            const response = await axios.post("/api/login", form);
+            if (response.status === 200) {
+                navigate("/");
+            }
+        } catch (error) {
+            alert(error);
         }
     };
     const handleChangePassword = (event: any) => {

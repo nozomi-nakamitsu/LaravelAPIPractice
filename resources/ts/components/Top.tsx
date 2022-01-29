@@ -6,17 +6,23 @@ const Top = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
     const logout = async () => {
-        const response = await axios.post("/api/logout");
-        console.log(response);
-        if (response.status === 200) {
-            navigate("/login");
+        try {
+            const response = await axios.post("/api/logout");
+            if (response.status === 200) {
+                navigate("/login");
+            }
+        } catch (error) {
+            alert(error);
         }
     };
     useEffect(() => {
         (async () => {
-            const response = await axios.get("/api/user");
-
-            setUser(response.data);
+            try {
+                const response = await axios.get("/api/user");
+                setUser(response.data);
+            } catch (error) {
+                alert(error);
+            }
         })();
     }, []);
     return (

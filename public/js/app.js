@@ -2315,23 +2315,35 @@ var Login = function Login() {
 
   var login = function login() {
     return __awaiter(void 0, void 0, void 0, function () {
-      var response;
+      var response, error_1;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
+            _a.trys.push([0, 2,, 3]);
+
             return [4
             /*yield*/
             , axios_1["default"].post("/api/login", form)];
 
           case 1:
             response = _a.sent();
-            console.log(response);
 
             if (response.status === 200) {
-              console.log("aaa");
               navigate("/");
             }
 
+            return [3
+            /*break*/
+            , 3];
+
+          case 2:
+            error_1 = _a.sent();
+            alert(error_1);
+            return [3
+            /*break*/
+            , 3];
+
+          case 3:
             return [2
             /*return*/
             ];
@@ -2600,22 +2612,35 @@ var Top = function Top() {
 
   var logout = function logout() {
     return __awaiter(void 0, void 0, void 0, function () {
-      var response;
+      var response, error_1;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
+            _a.trys.push([0, 2,, 3]);
+
             return [4
             /*yield*/
             , axios_1["default"].post("/api/logout")];
 
           case 1:
             response = _a.sent();
-            console.log(response);
 
             if (response.status === 200) {
               navigate("/login");
             }
 
+            return [3
+            /*break*/
+            , 3];
+
+          case 2:
+            error_1 = _a.sent();
+            alert(error_1);
+            return [3
+            /*break*/
+            , 3];
+
+          case 3:
             return [2
             /*return*/
             ];
@@ -2627,10 +2652,12 @@ var Top = function Top() {
   (0, react_1.useEffect)(function () {
     (function () {
       return __awaiter(void 0, void 0, void 0, function () {
-        var response;
+        var response, error_2;
         return __generator(this, function (_a) {
           switch (_a.label) {
             case 0:
+              _a.trys.push([0, 2,, 3]);
+
               return [4
               /*yield*/
               , axios_1["default"].get("/api/user")];
@@ -2638,6 +2665,18 @@ var Top = function Top() {
             case 1:
               response = _a.sent();
               setUser(response.data);
+              return [3
+              /*break*/
+              , 3];
+
+            case 2:
+              error_2 = _a.sent();
+              alert(error_2);
+              return [3
+              /*break*/
+              , 3];
+
+            case 3:
               return [2
               /*return*/
               ];

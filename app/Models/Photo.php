@@ -18,6 +18,6 @@ class Photo extends Model
     }
     /** JSONに含める属性 */
     protected $visible = [
-    'id', 'user', 'url',
+    'id', 'user', 'url',"filename"
 ];
 }

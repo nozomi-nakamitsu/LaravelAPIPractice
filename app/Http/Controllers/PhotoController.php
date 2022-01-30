@@ -12,6 +12,8 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use \Symfony\Component\HttpFoundation\Response;
+use App\Repositories\PhotoRepository;
+use App\Services\PhotoCreator;
 
 /**
  * 写真投稿
@@ -21,33 +23,27 @@ use \Symfony\Component\HttpFoundation\Response;
 
 class PhotoController extends Controller
 {
-    public function __construct()
-    {
+
+
+
+     /**
+     * WorkspaceController constructor.
+     * @param PhotoRepository $PhotoRepository
+
+     */
+
+    public function __construct(
+        PhotoRepository $photoRepository,
+        PhotoCreator $photoCreator
+    ) {
         // 認証が必要
         $this->middleware('auth');
+        $this->photoRepository = $photoRepository;
+        $this->photoCreator = $photoCreator;
     }
     public function store(StorePhoto $request)
     {
-        // 投稿写真の拡張子を取得する
-        $extension=$request->photo->extension();
-        $photo = new Photo();
-        $photo->filename=$request->photo->getClientOriginalName();
-        // Storage::putFileAs('dir', $file, 'file_name'); $fileを'dir'に'file_name'という名前で保存することができるという意味
-        // 第四引数はpublicを指定することで、URLによるアクセスが可能となる
-        $fileName =  Storage::cloud()->putFileAs("", $request->photo, $photo->filename, 'public');
-        $photo->url = Storage::disk('s3')->url($fileName);
-        // トランザクションを利用する
-        // DB::beginTransactionでトランザクションを開始します。DB::commitが呼ばれるまでは、データベースに反映されません。
-        DB::beginTransaction();
-        try {
-            Auth::user()->photos()->save($photo);
-            DB::commit();
-            return response()->json($photo, 200);
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            Storage::cloud()->delete($photo->filename);
-            return response()->json([], 500);
-        }
+        return $this->photoCreator->execute($request);
     }
     
     /**
@@ -58,7 +54,7 @@ class PhotoController extends Controller
     {
         try {
             $userId=Auth::user()->id;
-            $photos =Photo::with(['user',"likes"])->orderBy(Photo::CREATED_AT, 'desc')->get();
+            $photos = $this->photoRepository->with(['user',"likes"])->orderBy(Photo::CREATED_AT, 'desc')->get();
             return response()->json($photos, 200);
         } catch (\Exception $exception) {
             return response()->json([], 500);
@@ -71,7 +67,7 @@ class PhotoController extends Controller
     public function show(int $photoId)
     {
         try {
-            $photo =Photo::with(['user'])->where(['id' => $photoId])->first();
+            $photo =$this->photoRepository->with(['user'])->where('id', $photoId)->first();
             return response()->json($photo, 200);
         } catch (\Exception $exception) {
             return response()->json([], 500);
@@ -102,6 +98,7 @@ class PhotoController extends Controller
             return response()->json([], 500);
         }
     }
+
     /**
      * いいねする
      *
@@ -114,7 +111,7 @@ class PhotoController extends Controller
     public function favorite(int $photoId)
     {
         DB::transaction(function () use ($photoId) {
-            $photo=  Photo::where("id", $photoId)->with("likes")->first();
+            $photo=  $this->photoRepository->where("id", $photoId)->with(["likes"])->first();
 
             if (! $photo) {
                 abort(404);
@@ -133,7 +130,7 @@ class PhotoController extends Controller
     public function unfavorite(int $photoId)
     {
         DB::transaction(function () use ($photoId) {
-            $photo=  Photo::where("id", $photoId)->with("likes")->first();
+            $photo=  $this->photoRepository->where("id", $photoId)->with(["likes"])->first();
             if (! $photo) {
                 abort(404);
             }

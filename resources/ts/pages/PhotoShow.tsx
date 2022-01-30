@@ -3,16 +3,8 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 import "../../css/photoList.css";
-type Photo = {
-    id: number;
-    user: {
-        id: number;
-        name: string;
-        email: string;
-    };
-    url: string;
-    filename: string;
-};
+import { Photo } from "../types";
+import PhotoCard from "../components/PhotoCard";
 
 const PhotoShow = () => {
     const [photo, setPhoto] = useState<Photo>();
@@ -36,15 +28,7 @@ const PhotoShow = () => {
     };
     return (
         <div className="photo-show">
-            {photo ? (
-                <article className="card">
-                    <figure className="image">
-                        <img className="img" src={photo.url} />
-                        <p>{photo.user.name}</p>
-                    </figure>
-                </article>
-            ) : null}
-
+            {photo ? <PhotoCard photo={photo} /> : null}
             <Link to="/" className="link">
                 topへ戻る
             </Link>

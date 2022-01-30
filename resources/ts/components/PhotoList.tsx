@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/photoList.css";
 import { Link } from "react-router-dom";
+import PhotoCard from "../components/PhotoCard";
 
 const PhotoList = () => {
     const [photos, setPhotos] = useState<any[]>([]);
@@ -17,12 +18,7 @@ const PhotoList = () => {
                 ? photos.map((photo) => {
                       return (
                           <Link to={`/photo/${photo.id}`} key={photo.id}>
-                              <article className="card">
-                                  <figure className="image">
-                                      <img className="img" src={photo.url} />
-                                      <p>{photo.user.name}</p>
-                                  </figure>
-                              </article>
+                              <PhotoCard photo={photo} />
                           </Link>
                       );
                   })

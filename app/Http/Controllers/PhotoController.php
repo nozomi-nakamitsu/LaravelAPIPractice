@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use \Symfony\Component\HttpFoundation\Response;
 
 /**
  * 写真投稿
@@ -56,7 +57,8 @@ class PhotoController extends Controller
     public function index()
     {
         try {
-            $photos =Photo::with(['user'])->orderBy(Photo::CREATED_AT, 'desc')->get();
+            $userId=Auth::user()->id;
+            $photos =Photo::with(['user',"likes"])->orderBy(Photo::CREATED_AT, 'desc')->get();
             return response()->json($photos, 200);
         } catch (\Exception $exception) {
             return response()->json([], 500);
@@ -77,7 +79,7 @@ class PhotoController extends Controller
     }
     /**
      * 写真ダウンロード
-     * @param Photo $photo
+     * @param Int $photoId
      * @return \Illuminate\Http\Response
      */
     public function download(int $photoId)
@@ -99,5 +101,44 @@ class PhotoController extends Controller
         } catch (\Exception $exception) {
             return response()->json([], 500);
         }
+    }
+    /**
+     * いいねする
+     *
+     * NOTE:
+     * likes テーブルに当たるモデルクラスは外部キーしか中身のない中間テーブルになるので作成しません!
+     * リレーションの機能を使えば関連するモデルから間接的に中間テーブルを操作することができる。
+     * @param Int $photoId
+     * @return \Illuminate\Http\Response
+     */
+    public function favorite(int $photoId)
+    {
+        DB::transaction(function () use ($photoId) {
+            $photo=  Photo::where("id", $photoId)->with("likes")->first();
+
+            if (! $photo) {
+                abort(404);
+            }
+            $photo->likes()->detach(Auth::user()->id);
+            $photo->likes()->attach(Auth::user()->id);
+        });
+        return response(["photo_id" => $photoId], Response::HTTP_OK);
+    }
+    /**
+     * いいねを解除する
+     *
+     * @param Int $photoId
+     * @return \Illuminate\Http\Response
+     */
+    public function unfavorite(int $photoId)
+    {
+        DB::transaction(function () use ($photoId) {
+            $photo=  Photo::where("id", $photoId)->with("likes")->first();
+            if (! $photo) {
+                abort(404);
+            }
+            $photo->likes()->detach(Auth::user()->id);
+        });
+        return response(["photo_id" => $photoId], Response::HTTP_OK);
     }
 }

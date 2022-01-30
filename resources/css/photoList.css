@@ -24,3 +24,18 @@
 .link {
     margin-top: 20px;
 }
+.footer {
+    display: flex;
+    align-items: center;
+}
+.like {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.-active {
+    color: #f16272;
+}
+.-inActive {
+    color: #fff;
+}

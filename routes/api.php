@@ -29,7 +29,8 @@ Route::group(["middleware"=>'auth:sanctum'], function () {
     Route::get('/photo/{id}', 'PhotoController@show')->name('photo.show');
     // 写真ダウンロード
     Route::post('/photo/{id}/download', 'PhotoController@download')->name('photo.download');
+    // いいねする
+    Route::post('/photo/{id}/favorite', 'PhotoController@favorite')->name('photo.favorite');
+    // いいね解除する
+    Route::post('/photo/{id}/unfavorite', 'PhotoController@unfavorite')->name('photo.unfavorite');
 });
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
